@@ -4,7 +4,7 @@ public class Participante {
 
 	@Override
 	public String toString() {
-		return "Participante [numeroParticipante=" + numeroParticipante + "]";
+		return numeroParticipante + "";
 	}
 
 	private int numeroParticipante;
@@ -48,7 +48,5 @@ public class Participante {
 	public void setDistanciaTotal(double distanciaTotal) {
 		this.distanciaTotal = distanciaTotal;
 	}
-	
-	
 
 }

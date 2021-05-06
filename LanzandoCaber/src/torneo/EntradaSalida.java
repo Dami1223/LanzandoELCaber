@@ -1,13 +1,11 @@
 package torneo;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -16,10 +14,12 @@ public class EntradaSalida {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
+		String pathEntradaAleatorio = "lanzadoresAleatorio.in";
 		String pathEntrada = "lanzadores.in";
 		String pathSalida = "podios.out";
 
-		// escribirAleatorio(pathEntrada);
+		int cantidadParticipantes = 1000;
+		escribirAleatorio(pathEntradaAleatorio, cantidadParticipantes);
 
 		List<Participante> listaDeLanzadores = leer(pathEntrada);
 		Torneo torneo = new Torneo(listaDeLanzadores, 3);
@@ -30,12 +30,13 @@ public class EntradaSalida {
 		escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistancia());
 	}
 
-	private static void escribirAleatorio(String pathEntrada) throws FileNotFoundException {
+	private static void escribirAleatorio(String pathEntrada, int cantidadParticipantes) throws FileNotFoundException {
 		File archivo = new File(pathEntrada);
 		PrintWriter pw = new PrintWriter(archivo);
-
-		for (int i = 0; i < 20000; i++) {
-			pw.println((int) (Math.random() * 12000));
+		pw.println(cantidadParticipantes);
+		for (int i = 0; i < cantidadParticipantes * 3; i++) {
+			pw.print(String.format(Locale.ENGLISH, "%.2f\t", Math.random() * 5));
+			pw.print(String.format(Locale.ENGLISH, "%.2f\n", Math.random() * 5));
 		}
 		pw.close();
 	}
