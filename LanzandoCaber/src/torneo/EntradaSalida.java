@@ -22,13 +22,12 @@ public class EntradaSalida {
 		// escribirAleatorio(pathEntrada);
 
 		List<Participante> listaDeLanzadores = leer(pathEntrada);
-		Torneo torneo = new Torneo(listaDeLanzadores);
-		torneo.getPodio().setEscalones(3);
+		Torneo torneo = new Torneo(listaDeLanzadores, 3);
 		torneo.generarPodio();
-		System.out.println("Ganadores en consistencia:" + torneo.getPodio().getGanadoresConsistencia());
-		System.out.println("Ganadores en distancia:" + torneo.getPodio().getGanadoresDistancia());
+		System.out.println("Ganadores en consistencia:" + torneo.getPodioConsistencia().getGanadores());
+		System.out.println("Ganadores en distancia:" + torneo.getPodioDistancia().getGanadores());
 
-		escribirResultado(pathSalida, torneo.getPodio());
+		escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistancia());
 	}
 
 	private static void escribirAleatorio(String pathEntrada) throws FileNotFoundException {
@@ -41,15 +40,15 @@ public class EntradaSalida {
 		pw.close();
 	}
 
-	public static void escribirResultado(String pathSalida, Podio podio) throws FileNotFoundException {
+	public static void escribirResultado(String pathSalida, Podio podioC, Podio podioD) throws FileNotFoundException {
 		File archivoSalida = new File(pathSalida);
 		PrintWriter pwOut = new PrintWriter(archivoSalida);
 
-		for (Participante participante : podio.getGanadoresConsistencia()) {
+		for (Participante participante : podioC.getGanadores()) {
 			pwOut.write(participante.getNumeroParticipante() + " ");
 		}
 		pwOut.write("\n");
-		for (Participante participante : podio.getGanadoresDistancia()) {
+		for (Participante participante : podioD.getGanadores()) {
 			pwOut.write(participante.getNumeroParticipante() + " ");
 		}
 

@@ -48,5 +48,7 @@ public class Participante {
 	public void setDistanciaTotal(double distanciaTotal) {
 		this.distanciaTotal = distanciaTotal;
 	}
+	
+	
 
 }

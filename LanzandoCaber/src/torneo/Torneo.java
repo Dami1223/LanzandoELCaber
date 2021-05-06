@@ -5,12 +5,14 @@ import java.util.List;
 public class Torneo {
 
 	private List<Participante> lanzadores;
-	private Podio podio;
+	private Podio podioConsistencia;
+	private Podio podioDistancia; 
 	private Arbitro arbitro;
 
-	public Torneo(List<Participante> listaDeLanzadores) {
+	public Torneo(List<Participante> listaDeLanzadores, int tamPodio) {
 		lanzadores = listaDeLanzadores;
-		podio = new Podio();
+		podioConsistencia = new Podio(tamPodio, new PorConsistencia());
+		podioDistancia = new Podio (tamPodio, new PorDistancia());
 		this.arbitro = new Arbitro();
 	}
 
@@ -22,27 +24,33 @@ public class Torneo {
 		this.lanzadores = lanzadores;
 	}
 
-	public Podio getPodio() {
-		return podio;
+	public Podio getPodioConsistencia() {
+		return podioConsistencia;
+	}
+	
+	public Podio getPodioDistancia(){
+		return podioDistancia;
 	}
 
 	public void generarPodio() {
+		
+		
 		for (Participante participante : lanzadores) {
 			arbitro.setDistaciaValida(participante);
-			clasificarPaticipanteEnConsistencia(participante);
+			clasificarParticipanteEnConsistencia(participante);
 			clasificarParticipanteEnDistancia(participante);
 		}
 	}
 
 	private void clasificarParticipanteEnDistancia(Participante participante) {
 		participante.setDistanciaTotal(arbitro.calcularDistancia(participante));
-		podio.setGanadorDistancia(participante);
+		podioDistancia.setGanador(participante);
 	}
 
-	private void clasificarPaticipanteEnConsistencia(Participante participante) {
-			arbitro.calcularConsistencia(participante);
+	private void clasificarParticipanteEnConsistencia(Participante participante) {
 			participante.setConsistencia(arbitro.calcularConsistencia(participante));
-			podio.setGanadorConsistencia(participante);
+			if (participante.getConsistencia()!=0)
+				podioConsistencia.setGanador(participante);
 	}
 
 }
