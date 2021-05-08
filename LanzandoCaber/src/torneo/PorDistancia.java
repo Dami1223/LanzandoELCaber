@@ -1,8 +1,7 @@
 package torneo;
 
-import java.util.Comparator;
 
-public class PorDistancia implements Comparator<Participante> {
+public class PorDistancia extends ComparatorParticipante {
 
 	@Override
 	public int compare(Participante o1, Participante o2) {

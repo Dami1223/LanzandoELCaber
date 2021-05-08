@@ -1,8 +1,7 @@
 package torneo;
 
-import java.util.Comparator;
 
-public class PorConsistencia implements Comparator<Participante> {
+public class PorConsistencia extends ComparatorParticipante {
 
 	@Override
 	public int compare(Participante o1, Participante o2) {
