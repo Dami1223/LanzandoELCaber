@@ -23,12 +23,4 @@ public class Participante {
 		return numeroParticipante;
 	}
 
-	public void setNumeroParticipante(int numeroParticipante) {
-		this.numeroParticipante = numeroParticipante;
-	}
-
-	public void setLanzamientos(Lanzamiento[] lanzamientos) {
-		this.lanzamientos = lanzamientos;
-	}
-
 }

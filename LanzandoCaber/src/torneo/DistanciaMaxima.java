@@ -3,7 +3,7 @@ package torneo;
 public class DistanciaMaxima extends CriterioDeEvaluacion{
 	
 	@Override
-	double calcular(Lanzamiento[] lanzamientos) {
+	public double calcular(Lanzamiento[] lanzamientos) {
 		double sumaDistancias = 0;
 		for (Lanzamiento lanzamiento : lanzamientos) {
 			sumaDistancias += lanzamiento.getDistancia();

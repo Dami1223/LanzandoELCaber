@@ -3,7 +3,7 @@ package torneo;
 public class Consistencia extends CriterioDeEvaluacion {
 
 	@Override
-	double calcular(Lanzamiento[] lanzamientos) {
+	public double calcular(Lanzamiento[] lanzamientos) {
 		double promedioDistancia = 0;
 		double promedioAngulo = 0;
 		double desviacionEstandarDistancia = 0;

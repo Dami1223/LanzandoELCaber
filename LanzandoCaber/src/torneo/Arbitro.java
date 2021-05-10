@@ -1,7 +1,8 @@
 package torneo;
 
+import java.util.Comparator;
 
-public class Arbitro {
+public class Arbitro implements Comparator<Participante>{
 	private CriterioDeEvaluacion criterio;
 	
 	public Arbitro(CriterioDeEvaluacion criterio) {
