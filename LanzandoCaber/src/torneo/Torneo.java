@@ -6,51 +6,38 @@ public class Torneo {
 
 	private List<Participante> lanzadores;
 	private Podio podioConsistencia;
-	private Podio podioDistancia; 
-	private Arbitro arbitro;
+	private Podio podioDistanciaMaxima;
+	private Arbitro arbitroConsistencia;
+	private Arbitro arbitroDistanciaMaxima;
 
-	public Torneo(List<Participante> listaDeLanzadores, int tamPodio) {
+	public Torneo(List<Participante> listaDeLanzadores) {
 		lanzadores = listaDeLanzadores;
-		podioConsistencia = new Podio(tamPodio, new PorConsistencia());
-		podioDistancia = new Podio (tamPodio, new PorDistancia());
-		this.arbitro = new Arbitro();
+		this.arbitroConsistencia = new Arbitro(new Consistencia());
+		this.arbitroDistanciaMaxima = new Arbitro(new DistanciaMaxima());
+		this.podioConsistencia = new Podio(3);
+		this.podioDistanciaMaxima = new Podio(3);
+
 	}
 
 	public List<Participante> getLanzadores() {
 		return lanzadores;
 	}
 
-	public void setLanzadores(List<Participante> lanzadores) {
-		this.lanzadores = lanzadores;
+	public void generarPodio() {
+		for (Participante participante : lanzadores) {
+			arbitroConsistencia.corregirLanzamientos(participante);
+			if (arbitroConsistencia.calcular(participante.getLanzamientos()) != 0)
+				podioConsistencia.setGanador(participante, arbitroConsistencia);
+			podioDistanciaMaxima.setGanador(participante, arbitroDistanciaMaxima);
+		}
 	}
 
 	public Podio getPodioConsistencia() {
 		return podioConsistencia;
 	}
-	
-	public Podio getPodioDistancia(){
-		return podioDistancia;
-	}
 
-	public void generarPodio() {
-		
-		
-		for (Participante participante : lanzadores) {
-			arbitro.setDistaciaValida(participante);
-			clasificarParticipanteEnConsistencia(participante);
-			clasificarParticipanteEnDistancia(participante);
-		}
-	}
-
-	private void clasificarParticipanteEnDistancia(Participante participante) {
-		participante.setDistanciaTotal(arbitro.calcularDistancia(participante));
-		podioDistancia.setGanador(participante);
-	}
-
-	private void clasificarParticipanteEnConsistencia(Participante participante) {
-			participante.setConsistencia(arbitro.calcularConsistencia(participante));
-			if (participante.getConsistencia()!=0)
-				podioConsistencia.setGanador(participante);
+	public Podio getPodioDistanciaMaxima() {
+		return podioDistanciaMaxima;
 	}
 
 }

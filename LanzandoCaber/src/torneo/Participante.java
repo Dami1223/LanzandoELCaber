@@ -9,8 +9,6 @@ public class Participante {
 
 	private int numeroParticipante;
 	private Lanzamiento[] lanzamientos;
-	private double distanciaTotal;
-	private double consistencia;
 
 	public Participante(int nroParticipante, Lanzamiento[] lanzamientos2) {
 		this.numeroParticipante = nroParticipante;
@@ -31,22 +29,6 @@ public class Participante {
 
 	public void setLanzamientos(Lanzamiento[] lanzamientos) {
 		this.lanzamientos = lanzamientos;
-	}
-
-	public double getDistanciaTotal() {
-		return this.distanciaTotal;
-	}
-
-	public double getConsistencia() {
-		return consistencia;
-	}
-
-	public void setConsistencia(double consistencia) {
-		this.consistencia = consistencia;
-	}
-
-	public void setDistanciaTotal(double distanciaTotal) {
-		this.distanciaTotal = distanciaTotal;
 	}
 
 }

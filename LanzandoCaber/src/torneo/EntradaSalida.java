@@ -22,12 +22,13 @@ public class EntradaSalida {
 		escribirAleatorio(pathEntradaAleatorio, cantidadParticipantes);
 
 		List<Participante> listaDeLanzadores = leer(pathEntrada);
-		Torneo torneo = new Torneo(listaDeLanzadores, 3);
+		
+		Torneo torneo = new Torneo(listaDeLanzadores);
 		torneo.generarPodio();
 		System.out.println("Ganadores en consistencia:" + torneo.getPodioConsistencia().getGanadores());
-		System.out.println("Ganadores en distancia:" + torneo.getPodioDistancia().getGanadores());
+		System.out.println("Ganadores en distancia:" + torneo.getPodioDistanciaMaxima().getGanadores());
 
-		escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistancia());
+		escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistanciaMaxima());
 	}
 
 	private static void escribirAleatorio(String pathEntrada, int cantidadParticipantes) throws FileNotFoundException {
@@ -62,13 +63,14 @@ public class EntradaSalida {
 		int cantidadParticipantes = sc.nextInt();
 		List<Participante> listaParticipantes = new ArrayList<Participante>(cantidadParticipantes);
 		sc.useLocale(Locale.ENGLISH);
-
+		int cantidadLanzamientos = 3;
 		int nroParticipante = 0;
 
 		while (sc.hasNextLine() && nroParticipante < cantidadParticipantes) {
-			Lanzamiento[] lanzamientos = new Lanzamiento[3];
+			
+			Lanzamiento[] lanzamientos = new Lanzamiento[cantidadLanzamientos];
 			nroParticipante++;
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < cantidadLanzamientos; j++) {
 				double distancia = sc.nextDouble();
 				double angulo = sc.nextDouble();
 				lanzamientos[j] = new Lanzamiento(distancia, angulo);
