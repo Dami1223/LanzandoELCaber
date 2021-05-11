@@ -2,7 +2,7 @@ package torneo;
 
 public abstract class CriterioDeEvaluacion {
 	
-	abstract public double calcular(Lanzamiento[] lanzamientos);
+	public abstract double calcular(Lanzamiento[] lanzamientos);
 
-	abstract public int comparar(Lanzamiento[] lanzamientos, Lanzamiento[] lanzamientos2);
+	public abstract int comparar(Lanzamiento[] lanzamientos, Lanzamiento[] lanzamientos2);
 }

@@ -9,10 +9,6 @@ public class Arbitro implements Comparator<Participante>{
 		this.criterio = criterio;
 	}
 
-	public double calcular(Lanzamiento[] lanzamientos) {
-		return criterio.calcular(lanzamientos);
-	}
-
 	public double distanciaValida(Lanzamiento lanzamiento) {
 		if (isTiroExelente(lanzamiento))
 			return lanzamiento.getDistancia();
@@ -42,6 +38,10 @@ public class Arbitro implements Comparator<Participante>{
 	
 	public int compare(Participante o1, Participante o2) {
 		return this.criterio.comparar(o1.getLanzamientos(),o2.getLanzamientos());
+	}
+
+	public double calcular(Lanzamiento[] lanzamientos) {
+		return criterio.calcular(lanzamientos);
 	}
 
 }
