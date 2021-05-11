@@ -1,4 +1,4 @@
-package torneo;
+package ejecucion;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+
+import torneo.Lanzamiento;
+import torneo.Participante;
+import torneo.Podio;
 
 public class EntradaSalida {
 
@@ -34,6 +38,7 @@ public class EntradaSalida {
 		for (Participante participante : podioD.getGanadores()) {
 			pwOut.write(participante.getNumeroParticipante() + " ");
 		}
+		pwOut.write("\n");
 		pwOut.close();
 	}
 
