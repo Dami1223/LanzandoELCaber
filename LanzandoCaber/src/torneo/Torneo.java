@@ -27,8 +27,8 @@ public class Torneo {
 		for (Participante participante : lanzadores) {
 			arbitroConsistencia.corregirLanzamientos(participante);
 			if (arbitroConsistencia.calcular(participante.getLanzamientos()) != 0)
-				podioConsistencia.setGanador(participante, arbitroConsistencia);
-			podioDistanciaMaxima.setGanador(participante, arbitroDistanciaMaxima);
+				podioConsistencia.clasificarParticipante(participante, arbitroConsistencia);
+			podioDistanciaMaxima.clasificarParticipante(participante, arbitroDistanciaMaxima);
 		}
 	}
 
