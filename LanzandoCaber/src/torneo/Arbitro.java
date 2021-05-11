@@ -2,9 +2,10 @@ package torneo;
 
 import java.util.Comparator;
 
-public class Arbitro implements Comparator<Participante>{
+public class Arbitro implements Comparator<Participante> {
+
 	private CriterioDeEvaluacion criterio;
-	
+
 	public Arbitro(CriterioDeEvaluacion criterio) {
 		this.criterio = criterio;
 	}
@@ -25,7 +26,7 @@ public class Arbitro implements Comparator<Participante>{
 	private boolean isTiroExelente(Lanzamiento lanzamiento) {
 		return lanzamiento.getAngulo() < 30 && lanzamiento.getAngulo() > -30;
 	}
-	
+
 	public CriterioDeEvaluacion getCriterio() {
 		return this.criterio;
 	}
@@ -35,9 +36,9 @@ public class Arbitro implements Comparator<Participante>{
 			lanzamiento.setDistancia(this.distanciaValida(lanzamiento));
 		}
 	}
-	
+
 	public int compare(Participante o1, Participante o2) {
-		return this.criterio.comparar(o1.getLanzamientos(),o2.getLanzamientos());
+		return this.criterio.comparar(o1.getLanzamientos(), o2.getLanzamientos());
 	}
 
 	public double calcular(Lanzamiento[] lanzamientos) {

@@ -12,26 +12,7 @@ import java.util.Scanner;
 
 public class EntradaSalida {
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
-
-		String pathEntradaAleatorio = "lanzadoresAleatorio.in";
-		String pathEntrada = "lanzadores.in";
-		String pathSalida = "podios.out";
-
-		int cantidadParticipantes = 1000;
-		escribirAleatorio(pathEntradaAleatorio, cantidadParticipantes);
-
-		List<Participante> listaDeLanzadores = leer(pathEntrada);
-		
-		Torneo torneo = new Torneo(listaDeLanzadores);
-		torneo.generarPodio();
-		System.out.println("Ganadores en consistencia:" + torneo.getPodioConsistencia().getGanadores());
-		System.out.println("Ganadores en distancia:" + torneo.getPodioDistanciaMaxima().getGanadores());
-
-		escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistanciaMaxima());
-	}
-
-	private static void escribirAleatorio(String pathEntrada, int cantidadParticipantes) throws FileNotFoundException {
+	public static void escribirAleatorio(String pathEntrada, int cantidadParticipantes) throws FileNotFoundException {
 		File archivo = new File(pathEntrada);
 		PrintWriter pw = new PrintWriter(archivo);
 		pw.println(cantidadParticipantes);
@@ -53,7 +34,6 @@ public class EntradaSalida {
 		for (Participante participante : podioD.getGanadores()) {
 			pwOut.write(participante.getNumeroParticipante() + " ");
 		}
-
 		pwOut.close();
 	}
 
@@ -67,7 +47,7 @@ public class EntradaSalida {
 		int nroParticipante = 0;
 
 		while (sc.hasNextLine() && nroParticipante < cantidadParticipantes) {
-			
+
 			Lanzamiento[] lanzamientos = new Lanzamiento[cantidadLanzamientos];
 			nroParticipante++;
 			for (int j = 0; j < cantidadLanzamientos; j++) {

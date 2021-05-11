@@ -6,16 +6,16 @@ public class Torneo {
 
 	private List<Participante> lanzadores;
 	private Podio podioConsistencia;
-	private Podio podioDistanciaMaxima;
+	private Podio podioDistancia;
 	private Arbitro arbitroConsistencia;
-	private Arbitro arbitroDistanciaMaxima;
+	private Arbitro arbitroDistancia;
 
 	public Torneo(List<Participante> listaDeLanzadores) {
 		lanzadores = listaDeLanzadores;
 		this.arbitroConsistencia = new Arbitro(new Consistencia());
-		this.arbitroDistanciaMaxima = new Arbitro(new DistanciaMaxima());
+		this.arbitroDistancia = new Arbitro(new Distancia());
 		this.podioConsistencia = new Podio(3);
-		this.podioDistanciaMaxima = new Podio(3);
+		this.podioDistancia = new Podio(3);
 
 	}
 
@@ -28,7 +28,7 @@ public class Torneo {
 			arbitroConsistencia.corregirLanzamientos(participante);
 			if (arbitroConsistencia.calcular(participante.getLanzamientos()) != 0)
 				podioConsistencia.clasificarParticipante(participante, arbitroConsistencia);
-			podioDistanciaMaxima.clasificarParticipante(participante, arbitroDistanciaMaxima);
+			podioDistancia.clasificarParticipante(participante, arbitroDistancia);
 		}
 	}
 
@@ -36,8 +36,8 @@ public class Torneo {
 		return podioConsistencia;
 	}
 
-	public Podio getPodioDistanciaMaxima() {
-		return podioDistanciaMaxima;
+	public Podio getPodioDistancia() {
+		return podioDistancia;
 	}
 
 }

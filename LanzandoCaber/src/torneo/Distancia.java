@@ -1,7 +1,7 @@
 package torneo;
 
-public class DistanciaMaxima extends CriterioDeEvaluacion{
-	
+public class Distancia extends CriterioDeEvaluacion {
+
 	@Override
 	public double calcular(Lanzamiento[] lanzamientos) {
 		double sumaDistancias = 0;

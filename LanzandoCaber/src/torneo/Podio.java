@@ -22,7 +22,7 @@ public class Podio {
 		for (i = 0; i < this.ganadores.size(); i++) {
 			if (arbitro.compare(ganadores.get(i), participante) > 0) {
 				this.ganadores.add(i, participante);
-				if(this.ganadores.size()>3)
+				if (this.ganadores.size() > 3)
 					this.ganadores.remove(this.escalones);
 				return true;
 			}
