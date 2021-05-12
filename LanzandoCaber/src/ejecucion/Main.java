@@ -19,8 +19,8 @@ public class Main {
 
 		Torneo torneo = ejecutar(pathEntrada, pathSalida);
 
-		System.out.println("Ganadores en consistencia:" + torneo.getPodioConsistencia().getGanadores());
-		System.out.println("Ganadores en distancia:" + torneo.getPodioDistancia().getGanadores());
+		System.out.println("Ganadores en Consistencia:" + torneo.getPodioConsistencia().getGanadores());
+		System.out.println("Ganadores en Distancia:" + torneo.getPodioDistancia().getGanadores());
 	}
 
 	public static Torneo ejecutar(String pathEntrada, String pathSalida) throws NumberFormatException, IOException {
@@ -28,7 +28,7 @@ public class Main {
 		List<Participante> listaDeLanzadores = EntradaSalida.leer(pathEntrada);
 
 		Torneo torneo = new Torneo(listaDeLanzadores);
-		torneo.generarPodio();
+		torneo.generarPodios();
 
 		EntradaSalida.escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistancia());
 		return torneo;

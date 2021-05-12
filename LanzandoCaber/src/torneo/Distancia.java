@@ -12,8 +12,8 @@ public class Distancia extends CriterioDeEvaluacion {
 	}
 
 	@Override
-	public int comparar(Lanzamiento[] lanzamientos, Lanzamiento[] lanzamientos2) {
-		return -Double.compare(calcular(lanzamientos), calcular(lanzamientos2));
+	public int compare(Participante uno, Participante dos) {
+		return -Double.compare(calcular(uno.getLanzamientos()), calcular(dos.getLanzamientos()));
 	}
 
 }

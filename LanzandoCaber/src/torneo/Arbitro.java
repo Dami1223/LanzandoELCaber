@@ -10,35 +10,27 @@ public class Arbitro implements Comparator<Participante> {
 		this.criterio = criterio;
 	}
 
-	public double distanciaValida(Lanzamiento lanzamiento) {
-		if (isTiroExelente(lanzamiento))
-			return lanzamiento.getDistancia();
-		if (isTiroBueno(lanzamiento))
-			return lanzamiento.getDistancia() * 0.8;
-		return 0;
-	}
-
-	private boolean isTiroBueno(Lanzamiento lanzamiento) {
+	private boolean esTiroBueno(Lanzamiento lanzamiento) {
 		return lanzamiento.getAngulo() < 90 && lanzamiento.getAngulo() > 30
 				|| lanzamiento.getAngulo() > -90 && lanzamiento.getAngulo() < -30;
 	}
 
-	private boolean isTiroExelente(Lanzamiento lanzamiento) {
-		return lanzamiento.getAngulo() < 30 && lanzamiento.getAngulo() > -30;
-	}
-
-	public CriterioDeEvaluacion getCriterio() {
-		return this.criterio;
+	private boolean esTiroMalo(Lanzamiento lanzamiento) {
+		return lanzamiento.getAngulo() < -90 && lanzamiento.getAngulo() > -180
+				|| lanzamiento.getAngulo() > 90 && lanzamiento.getAngulo() < 180;
 	}
 
 	public void corregirLanzamientos(Participante participante) {
 		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			lanzamiento.setDistancia(this.distanciaValida(lanzamiento));
+			if (esTiroMalo(lanzamiento))
+				lanzamiento.setDistancia(0);
+			else if (esTiroBueno(lanzamiento))
+				lanzamiento.setDistancia(lanzamiento.getDistancia() * 0.8);
 		}
 	}
 
-	public int compare(Participante o1, Participante o2) {
-		return this.criterio.comparar(o1.getLanzamientos(), o2.getLanzamientos());
+	public int compare(Participante uno, Participante dos) {
+		return this.criterio.compare(uno, dos);
 	}
 
 	public double calcular(Lanzamiento[] lanzamientos) {

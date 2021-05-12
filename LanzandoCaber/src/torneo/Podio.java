@@ -18,19 +18,18 @@ public class Podio {
 	}
 
 	public boolean clasificarParticipante(Participante participante, Arbitro arbitro) {
-		int i = 0;
-		for (i = 0; i < this.ganadores.size(); i++) {
+		for (int i = 0; i < this.ganadores.size(); i++) {
 			if (arbitro.compare(ganadores.get(i), participante) > 0) {
 				this.ganadores.add(i, participante);
-				if (this.ganadores.size() > 3)
+				if (this.ganadores.size() > this.escalones)
 					this.ganadores.remove(this.escalones);
 				return true;
 			}
 		}
-		if (i == 0) {
+		if (this.ganadores.size() == 0) {
 			this.ganadores.add(participante);
 			return true;
-		} else if (i < this.escalones) {
+		} else if (this.ganadores.size() < this.escalones) {
 			this.ganadores.add(participante);
 			return true;
 		}

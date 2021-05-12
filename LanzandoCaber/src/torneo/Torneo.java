@@ -16,14 +16,13 @@ public class Torneo {
 		this.arbitroDistancia = new Arbitro(new Distancia());
 		this.podioConsistencia = new Podio(3);
 		this.podioDistancia = new Podio(3);
-
 	}
 
 	public List<Participante> getLanzadores() {
 		return lanzadores;
 	}
 
-	public void generarPodio() {
+	public void generarPodios() {
 		for (Participante participante : lanzadores) {
 			arbitroConsistencia.corregirLanzamientos(participante);
 			if (arbitroConsistencia.calcular(participante.getLanzamientos()) != 0)

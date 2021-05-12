@@ -1,8 +1,8 @@
 package torneo;
 
-public abstract class CriterioDeEvaluacion {
+import java.util.Comparator;
+
+public abstract class CriterioDeEvaluacion implements Comparator<Participante> {
 
 	public abstract double calcular(Lanzamiento[] lanzamientos);
-
-	public abstract int comparar(Lanzamiento[] lanzamientos, Lanzamiento[] lanzamientos2);
 }
