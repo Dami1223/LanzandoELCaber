@@ -44,15 +44,7 @@ public class EntradaSalida {
 	public static void escribirResultado(String pathSalida, Podio podioC, Podio podioD) throws FileNotFoundException {
 		File archivoSalida = new File(pathSalida);
 		PrintWriter pwOut = new PrintWriter(archivoSalida);
-
-		for (Participante participante : podioC.getGanadores()) {
-			pwOut.write(participante.getNumeroParticipante() + " ");
-		}
-		pwOut.write("\n");
-		for (Participante participante : podioD.getGanadores()) {
-			pwOut.write(participante.getNumeroParticipante() + " ");
-		}
-
+		pwOut.write(podioC.toString() + "\n" + podioD.toString() + "\n");
 		pwOut.close();
 	}
 

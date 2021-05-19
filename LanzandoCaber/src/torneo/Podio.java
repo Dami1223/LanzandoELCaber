@@ -35,5 +35,11 @@ public class Podio {
 	public void setEscalones(int escalones) {
 		this.escalones = escalones;
 	}
-
+	@Override
+	public String toString() {
+		String ret = "";
+		for (Participante participante : ganadores)
+			ret += participante.getNumeroParticipante() < ganadores.size() ? participante.getNumeroParticipante() + " " : participante.getNumeroParticipante();
+		return ret;
+	}
 }
