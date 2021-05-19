@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -15,14 +16,24 @@ import ejecucion.Main;
 @DisplayName("Lote de Prueba")
 class TorneoTest {
 
+	private final String rutaSalidaEsperada = "LoteDePrueba\\SalidaEsperada\\";
+	private final String rutaSalida = "LoteDePrueba\\Salida\\";
+	private final String rutaEntrada = "LoteDePrueba\\Entrada\\";
+
 	@Test
-	@DisplayName("Caso00")
+	@DisplayName("Caso del Enunciado")
 	void EnunciadoTest() throws NumberFormatException, IOException {
-		String pathSalida = "podios.out";
-		String pathSalidaEsperada = "podiosEsperados.out";
+		String nombreCaso = "Caso00_Enunciado";
+		String pathSalidaEsperada = rutaSalidaEsperada + nombreCaso + ".out";
+		String pathEntrada = rutaEntrada + nombreCaso + ".in";
+		String pathSalida = rutaSalida + nombreCaso + ".out";
 
-		Main.ejecutar("lanzadores.in", pathSalida);
+		Main.ejecutar(pathEntrada, pathSalida);
+		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+	}
 
+	private void compararArchivosSalida(String pathSalidaEsperada, String pathSalida)
+			throws FileNotFoundException, IOException {
 		BufferedReader brSalida = new BufferedReader(new FileReader(new File(pathSalida)));
 		BufferedReader brSalidaEsperda = new BufferedReader(new FileReader(new File(pathSalidaEsperada)));
 
@@ -30,6 +41,7 @@ class TorneoTest {
 		while ((lineaEsperada = brSalidaEsperda.readLine()) != null) {
 			String lineaSalida = brSalida.readLine();
 			assertNotNull(lineaSalida, "La salida tiene más lineas que la esperada");
+
 			assertEquals(lineaEsperada, lineaSalida);
 		}
 		assertNull(brSalida.readLine(), "La salida tiene más lineas que la esperada");

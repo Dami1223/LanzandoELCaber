@@ -3,17 +3,17 @@ package ejecucion;
 import java.io.IOException;
 import java.util.List;
 
-import torneo.Participante;
-import torneo.Torneo;
+import clases.Participante;
+import clases.Torneo;
 
 public class Main {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
-		String pathEntrada = "lanzadores.in";
-		String pathSalida = "podios.out";
-		
-//		String pathEntradaAleatorio = "lanzadoresAleatorio.in";
+		String pathEntrada = "LoteDePrueba\\Entrada\\Caso00_Enunciado.in";
+		String pathSalida = "LoteDePrueba\\Salida\\Caso00_Enunciado.out";
+
+//		String pathEntradaAleatorio = "LoteDePrueba\\Entrada\\CasoAleatorio.in";
 //		int cantidadParticipantes = 1000;
 //		EntradaSalida.escribirAleatorio(pathEntradaAleatorio, cantidadParticipantes);
 

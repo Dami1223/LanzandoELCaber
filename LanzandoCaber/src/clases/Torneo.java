@@ -1,4 +1,4 @@
-package torneo;
+package clases;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package torneo;
+package clases;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,17 +40,12 @@ public class Podio {
 		return escalones;
 	}
 
-<<<<<<< HEAD
-	public void setEscalones(int escalones) {
-		this.escalones = escalones;
-	}
 	@Override
 	public String toString() {
 		String ret = "";
 		for (Participante participante : ganadores)
-			ret += participante.getNumeroParticipante() < ganadores.size() ? participante.getNumeroParticipante() + " " : participante.getNumeroParticipante();
+			ret += participante.getNumeroParticipante() < ganadores.size() ? participante.getNumeroParticipante() + " "
+					: participante.getNumeroParticipante();
 		return ret;
 	}
-=======
->>>>>>> a588a34c84484b5d52ddbde55f3696c19d43c52f
 }

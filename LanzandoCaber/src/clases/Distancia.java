@@ -1,4 +1,4 @@
-package torneo;
+package clases;
 
 public class Distancia extends CriterioDeEvaluacion {
 

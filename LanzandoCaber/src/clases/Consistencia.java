@@ -1,4 +1,4 @@
-package torneo;
+package clases;
 
 public class Consistencia extends CriterioDeEvaluacion {
 

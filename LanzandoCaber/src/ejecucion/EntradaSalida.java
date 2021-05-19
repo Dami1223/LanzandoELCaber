@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
-import torneo.Lanzamiento;
-import torneo.Participante;
-import torneo.Podio;
+import clases.Lanzamiento;
+import clases.Participante;
+import clases.Podio;
 
 public class EntradaSalida {
 
@@ -30,19 +30,7 @@ public class EntradaSalida {
 	public static void escribirResultado(String pathSalida, Podio podioC, Podio podioD) throws FileNotFoundException {
 		File archivoSalida = new File(pathSalida);
 		PrintWriter pwOut = new PrintWriter(archivoSalida);
-<<<<<<< HEAD:LanzandoCaber/src/torneo/EntradaSalida.java
 		pwOut.write(podioC.toString() + "\n" + podioD.toString() + "\n");
-=======
-
-		for (Participante participante : podioC.getGanadores()) {
-			pwOut.write(participante.getNumeroParticipante() + " ");
-		}
-		pwOut.write("\n");
-		for (Participante participante : podioD.getGanadores()) {
-			pwOut.write(participante.getNumeroParticipante() + " ");
-		}
-		pwOut.write("\n");
->>>>>>> a588a34c84484b5d52ddbde55f3696c19d43c52f:LanzandoCaber/src/ejecucion/EntradaSalida.java
 		pwOut.close();
 	}
 
