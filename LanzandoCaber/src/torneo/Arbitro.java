@@ -1,59 +1,40 @@
 package torneo;
 
-public class Arbitro {
+import java.util.Comparator;
 
-	public double calcularConsistencia(Participante participante) {
-		double promedioDistancia = 0;
-		double promedioAngulo = 0;
-		double desviacionEstandarDistancia = 0;
-		double desviacionEstandarAngulo = 0;
-		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			if (lanzamiento.getDistancia() == 0)
-				return 0;
-			promedioDistancia += lanzamiento.getDistancia() * 1 / 3;
-			promedioAngulo += lanzamiento.getAngulo() * 1 / 3;
-		}
+public class Arbitro implements Comparator<Participante> {
 
-		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			desviacionEstandarAngulo += Math.pow(lanzamiento.getAngulo() - promedioAngulo, 2) * 1 / 3;
-			desviacionEstandarDistancia += Math.pow(lanzamiento.getDistancia() - promedioDistancia, 2) * 1 / 3;
-		}
-		desviacionEstandarAngulo = Math.sqrt(desviacionEstandarAngulo);
-		desviacionEstandarDistancia = Math.sqrt(desviacionEstandarDistancia);
+	private CriterioDeEvaluacion criterio;
 
-		return (desviacionEstandarAngulo + desviacionEstandarDistancia) / 2;
-
+	public Arbitro(CriterioDeEvaluacion criterio) {
+		this.criterio = criterio;
 	}
 
-	public double calcularDistancia(Participante participante) {
-		double sumaDistancias = 0;
-		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			sumaDistancias += lanzamiento.getDistancia();
-		}
-		return sumaDistancias;
-	}
-
-	public double distanciaValida(Lanzamiento lanzamiento) {
-		if (isTiroExelente(lanzamiento))
-			return lanzamiento.getDistancia();
-		if (isTiroBueno(lanzamiento))
-			return lanzamiento.getDistancia() * 0.8;
-		return 0;
-	}
-
-	private boolean isTiroBueno(Lanzamiento lanzamiento) {
+	private boolean esTiroBueno(Lanzamiento lanzamiento) {
 		return lanzamiento.getAngulo() < 90 && lanzamiento.getAngulo() > 30
 				|| lanzamiento.getAngulo() > -90 && lanzamiento.getAngulo() < -30;
 	}
 
-	private boolean isTiroExelente(Lanzamiento lanzamiento) {
-		return lanzamiento.getAngulo() < 30 && lanzamiento.getAngulo() > -30;
+	private boolean esTiroMalo(Lanzamiento lanzamiento) {
+		return lanzamiento.getAngulo() < -90 && lanzamiento.getAngulo() > -180
+				|| lanzamiento.getAngulo() > 90 && lanzamiento.getAngulo() < 180;
 	}
 
-	public void setDistaciaValida(Participante participante) {
+	public void corregirLanzamientos(Participante participante) {
 		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			lanzamiento.setDistancia(distanciaValida(lanzamiento));
+			if (esTiroMalo(lanzamiento))
+				lanzamiento.setDistancia(0);
+			else if (esTiroBueno(lanzamiento))
+				lanzamiento.setDistancia(lanzamiento.getDistancia() * 0.8);
 		}
+	}
+
+	public int compare(Participante uno, Participante dos) {
+		return this.criterio.compare(uno, dos);
+	}
+
+	public double calcular(Lanzamiento[] lanzamientos) {
+		return criterio.calcular(lanzamientos);
 	}
 
 }
