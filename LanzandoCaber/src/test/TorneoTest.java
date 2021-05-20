@@ -33,6 +33,18 @@ class TorneoTest {
 	}
 
 	@Test
+	@DisplayName("Caso de fatiga")
+	void fatigaTest() throws NumberFormatException, IOException {
+
+		String pathEntradaAleatorio = rutaEntrada + "CasoAleatorio.in";
+		String pathSalidaEsperada = rutaSalidaEsperada + "CasoAleatorio.out";
+		String pathSalida = rutaSalida + "CasoAleatorio.out";
+
+		Main.ejecutar(pathEntradaAleatorio, pathSalida);
+		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+	}
+
+	@Test
 	@DisplayName("Caso 01")
 	void Caso01Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_01";
