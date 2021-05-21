@@ -9,8 +9,6 @@ public class Consistencia extends CriterioDeEvaluacion {
 		double desviacionEstandarDistancia = 0;
 		double desviacionEstandarAngulo = 0;
 		for (Lanzamiento lanzamiento : lanzamientos) {
-			if (lanzamiento.getDistancia() == 0)
-				return 0;
 			promedioDistancia += lanzamiento.getDistancia() * 1 / 3;
 			promedioAngulo += lanzamiento.getAngulo() * 1 / 3;
 		}
@@ -28,6 +26,15 @@ public class Consistencia extends CriterioDeEvaluacion {
 	@Override
 	public int compare(Participante uno, Participante dos) {
 		return Double.compare(this.calcular(uno.getLanzamientos()), this.calcular(dos.getLanzamientos()));
+	}
+
+	@Override
+	protected boolean validar(Lanzamiento[] lanzamientos) {
+		for (Lanzamiento lanzamiento : lanzamientos) {
+			if (!lanzamiento.getValidez())
+				return false;
+		}
+		return true;
 	}
 
 }

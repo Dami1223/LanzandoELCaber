@@ -22,9 +22,10 @@ public class Arbitro implements Comparator<Participante> {
 
 	public void corregirLanzamientos(Participante participante) {
 		for (Lanzamiento lanzamiento : participante.getLanzamientos()) {
-			if (esTiroMalo(lanzamiento))
-				lanzamiento.setDistancia(0);
-			else if (esTiroBueno(lanzamiento))
+			lanzamiento.setValidez(true);
+			if (esTiroMalo(lanzamiento)) {
+				lanzamiento.setValidez(false);
+			} else if (esTiroBueno(lanzamiento))
 				lanzamiento.setDistancia(lanzamiento.getDistancia() * 0.8);
 		}
 	}
@@ -35,6 +36,10 @@ public class Arbitro implements Comparator<Participante> {
 
 	public double calcular(Lanzamiento[] lanzamientos) {
 		return criterio.calcular(lanzamientos);
+	}
+
+	public boolean validar(Participante participante) {
+		return this.criterio.validar(participante.getLanzamientos());
 	}
 
 }

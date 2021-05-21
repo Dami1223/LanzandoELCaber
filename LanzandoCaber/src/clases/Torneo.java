@@ -25,9 +25,10 @@ public class Torneo {
 	public void generarPodios() {
 		for (Participante participante : lanzadores) {
 			arbitroConsistencia.corregirLanzamientos(participante);
-			if (arbitroConsistencia.calcular(participante.getLanzamientos()) != 0)
+			if (arbitroConsistencia.validar(participante))
 				podioConsistencia.clasificarParticipante(participante, arbitroConsistencia);
-			podioDistancia.clasificarParticipante(participante, arbitroDistancia);
+			if (arbitroDistancia.validar(participante))
+				podioDistancia.clasificarParticipante(participante, arbitroDistancia);
 		}
 	}
 

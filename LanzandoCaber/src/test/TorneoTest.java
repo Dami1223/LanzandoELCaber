@@ -11,11 +11,13 @@ import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import ejecucion.EntradaSalida;
 import ejecucion.Main;
 
 @DisplayName("Lote de Prueba")
 class TorneoTest {
 
+	private static final int CANTIDAD_PARTICIPANTES_FATIGA = 1000000;
 	private final String rutaSalidaEsperada = "LoteDePrueba\\SalidaEsperada\\podiosEsperados";
 	private final String rutaSalida = "LoteDePrueba\\Salida\\podios";
 	private final String rutaEntrada = "LoteDePrueba\\Entrada\\lanzadores";
@@ -27,20 +29,19 @@ class TorneoTest {
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
 		String pathSalida = rutaSalida + numeroCaso + ".out";
-
 		Main.ejecutar(pathEntrada, pathSalida);
 		compararArchivosSalida(pathSalidaEsperada, pathSalida);
 	}
 
 	@Test
-	@DisplayName("Caso de fatiga")
-	void fatigaTest() throws NumberFormatException, IOException {
-
-		String pathEntradaAleatorio = rutaEntrada + "CasoAleatorio.in";
-		String pathSalidaEsperada = rutaSalidaEsperada + "CasoAleatorio.out";
-		String pathSalida = rutaSalida + "CasoAleatorio.out";
-
-		Main.ejecutar(pathEntradaAleatorio, pathSalida);
+	@DisplayName("Caso de Fatiga")
+	void fatigaConsistenciaTest() throws NumberFormatException, IOException {
+		String numeroCaso = "CasoFatiga";
+		String pathEntrada = rutaEntrada + numeroCaso + ".in";
+		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		String pathSalida = rutaSalida + numeroCaso + ".out";
+		EntradaSalida.generarFatiga(pathEntrada, pathSalidaEsperada, CANTIDAD_PARTICIPANTES_FATIGA);
+		Main.ejecutar(pathEntrada, pathSalida);
 		compararArchivosSalida(pathSalidaEsperada, pathSalida);
 	}
 
@@ -129,9 +130,9 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 08")
-	void Caso08Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_08";
+	@DisplayName("Caso 8")
+	void Caso8Test() throws NumberFormatException, IOException {
+		String numeroCaso = "_8-TiroDescalificado";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
 		String pathSalida = rutaSalida + numeroCaso + ".out";
@@ -141,9 +142,21 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 09")
-	void Caso09Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_09";
+	@DisplayName("Caso 9")
+	void Caso9Test() throws NumberFormatException, IOException {
+		String numeroCaso = "_9-SinPodioConsistencia";
+		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		String pathEntrada = rutaEntrada + numeroCaso + ".in";
+		String pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+	}
+	
+	@Test
+	@DisplayName("Caso 10")
+	void Caso10Test() throws NumberFormatException, IOException {
+		String numeroCaso = "_10-DistanciaAl80";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
 		String pathSalida = rutaSalida + numeroCaso + ".out";
@@ -152,6 +165,18 @@ class TorneoTest {
 		compararArchivosSalida(pathSalidaEsperada, pathSalida);
 	}
 
+	@Test
+	@DisplayName("Caso 11")
+	void Caso11Test() throws NumberFormatException, IOException {
+		String numeroCaso = "_11-SinPodios";
+		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		String pathEntrada = rutaEntrada + numeroCaso + ".in";
+		String pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+	}
+	
 	private void compararArchivosSalida(String pathSalidaEsperada, String pathSalida)
 			throws FileNotFoundException, IOException {
 		BufferedReader brSalida = new BufferedReader(new FileReader(new File(pathSalida)));

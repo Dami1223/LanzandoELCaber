@@ -27,6 +27,30 @@ public class EntradaSalida {
 		pw.close();
 	}
 
+	public static void generarFatiga(String pathEntrada, String pathSalidaEsperada, int cantidadParticipantes)
+			throws FileNotFoundException {
+		File archivo = new File(pathEntrada);
+		PrintWriter pw = new PrintWriter(archivo);
+		File archivoSalida = new File(pathSalidaEsperada);
+		PrintWriter pwSalida = new PrintWriter(archivoSalida);
+		pw.println(cantidadParticipantes);
+		double distancia = 0;
+		double angulo = 0;
+		for (int i = cantidadParticipantes; i >= 1; i--) {
+			for (int j = 0; j < 3; j++) {
+				distancia += i;
+				pw.print(String.format(Locale.ENGLISH, "%.2f\t", distancia));
+				pw.print(String.format(Locale.ENGLISH, "%.2f\n", angulo));
+			}
+		}
+		pwSalida.write(String.format("%d %d %d\n", cantidadParticipantes, cantidadParticipantes - 1,
+				cantidadParticipantes - 2));
+		pwSalida.write(
+				String.format("%d %d %d", cantidadParticipantes, cantidadParticipantes - 1, cantidadParticipantes - 2));
+		pw.close();
+		pwSalida.close();
+	}
+
 	public static void escribirResultado(String pathSalida, Podio podioC, Podio podioD) throws FileNotFoundException {
 		File archivoSalida = new File(pathSalida);
 		PrintWriter pwOut = new PrintWriter(archivoSalida);

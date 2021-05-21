@@ -4,6 +4,7 @@ public class Lanzamiento {
 
 	private double distancia;
 	private double angulo;
+	private boolean validez;
 
 	public Lanzamiento(double distancia, double angulo) {
 		this.distancia = distancia;
@@ -24,5 +25,13 @@ public class Lanzamiento {
 
 	public void setAngulo(double angulo) {
 		this.angulo = angulo;
+	}
+
+	public void setValidez(boolean validezArbitro) {
+		this.validez = validezArbitro;
+	}
+
+	public boolean getValidez() {
+		return this.validez;
 	}
 }

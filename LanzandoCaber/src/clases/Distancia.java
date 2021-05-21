@@ -6,7 +6,8 @@ public class Distancia extends CriterioDeEvaluacion {
 	public double calcular(Lanzamiento[] lanzamientos) {
 		double sumaDistancias = 0;
 		for (Lanzamiento lanzamiento : lanzamientos) {
-			sumaDistancias += lanzamiento.getDistancia();
+			if (lanzamiento.getValidez())
+				sumaDistancias += lanzamiento.getDistancia();
 		}
 		return sumaDistancias;
 	}
@@ -14,6 +15,15 @@ public class Distancia extends CriterioDeEvaluacion {
 	@Override
 	public int compare(Participante uno, Participante dos) {
 		return -Double.compare(calcular(uno.getLanzamientos()), calcular(dos.getLanzamientos()));
+	}
+
+	@Override
+	protected boolean validar(Lanzamiento[] lanzamientos) {
+		for (Lanzamiento lanzamiento : lanzamientos) {
+			if (lanzamiento.getValidez())
+				return true;
+		}
+		return false;
 	}
 
 }

@@ -43,10 +43,11 @@ public class Podio {
 	@Override
 	public String toString() {
 		String ret = "";
-		for (int i = 0; i < ganadores.size() - 1; i++) {
-			ret += ganadores.get(i).getNumeroParticipante() + " ";
+		for (int i = 0; i < ganadores.size(); i++) {
+			ret += ganadores.get(i).getNumeroParticipante();
+			if (i < ganadores.size() - 1)
+				ret += " ";
 		}
-		ret += ganadores.get(ganadores.size() - 1).getNumeroParticipante();
 		return ret;
 	}
 }
