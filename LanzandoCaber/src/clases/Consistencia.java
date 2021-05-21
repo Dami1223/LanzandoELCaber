@@ -24,8 +24,8 @@ public class Consistencia extends CriterioDeEvaluacion {
 	}
 
 	@Override
-	public int compare(Participante uno, Participante dos) {
-		return Double.compare(this.calcular(uno.getLanzamientos()), this.calcular(dos.getLanzamientos()));
+	public int compare(Lanzamiento[] uno, Lanzamiento[] dos) {
+		return Double.compare(this.calcular(uno), this.calcular(dos));
 	}
 
 	@Override

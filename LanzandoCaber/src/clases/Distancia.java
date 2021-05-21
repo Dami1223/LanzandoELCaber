@@ -13,8 +13,8 @@ public class Distancia extends CriterioDeEvaluacion {
 	}
 
 	@Override
-	public int compare(Participante uno, Participante dos) {
-		return -Double.compare(calcular(uno.getLanzamientos()), calcular(dos.getLanzamientos()));
+	public int compare(Lanzamiento[] uno, Lanzamiento[] dos) {
+		return -Double.compare(calcular(uno), calcular(dos));
 	}
 
 	@Override

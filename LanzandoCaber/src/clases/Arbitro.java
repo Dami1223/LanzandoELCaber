@@ -31,7 +31,7 @@ public class Arbitro implements Comparator<Participante> {
 	}
 
 	public int compare(Participante uno, Participante dos) {
-		return this.criterio.compare(uno, dos);
+		return this.criterio.compare(uno.getLanzamientos(), dos.getLanzamientos());
 	}
 
 	public double calcular(Lanzamiento[] lanzamientos) {
