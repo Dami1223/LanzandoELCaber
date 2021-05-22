@@ -8,172 +8,151 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ejecucion.EntradaSalida;
 import ejecucion.Main;
 
 public class TorneoTest {
-
+	
 	private static final int CANTIDAD_PARTICIPANTES_FATIGA = 1000000;
 	private final String rutaSalidaEsperada = "LoteDePrueba\\SalidaEsperada\\podiosEsperados";
 	private final String rutaSalida = "LoteDePrueba\\Salida\\podios";
-	private final String rutaEntrada = "LoteDePrueba\\Entrada\\lanzadores";
-
+	private final String rutaEntrada = "LoteDePrueba\\Entrada\\lanzadores";	
+	private static String pathSalidaEsperada;
+	private static String pathSalida;
+	private static String numeroCaso;
+	private static String pathEntrada;
+	
 	@Test
-	public void enunciadoTest() throws NumberFormatException, IOException {
-		String numeroCaso = "_00";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
+	public void caso00_Enunciado() throws NumberFormatException, IOException {
+		numeroCaso = "_00-Enunciado";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
 		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+	
+	@Test
+	public void caso01_OrdenamientoPodioDistancia() throws NumberFormatException, IOException {
+		numeroCaso = "_01-OrdenamientoPodioDistancia";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+	
+	@Test
+	public void caso02_TiroDescalificado() throws NumberFormatException, IOException {
+		numeroCaso = "_02-TiroDescalificado";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
 	}
 
 	@Test
-	public void fatigaConsistenciaTest() throws NumberFormatException, IOException {
-		String numeroCaso = "CasoFatiga";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
+	public void caso03_OrdenamientoPodioConsistencia() throws NumberFormatException, IOException {
+		numeroCaso = "_03-OrdenamientoPodioConsistencia";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+
+	@Test
+	public void caso04_FlujoNormal() throws NumberFormatException, IOException {
+		numeroCaso = "_04-FlujoNormal";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+
+	@Test
+	public void caso05_PodioConsistenciaIncompleto() throws NumberFormatException, IOException {
+		numeroCaso = "_05-PodioConsistenciaIncompleto";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+
+	@Test
+	public void caso06_SinPodioConsistencia() throws NumberFormatException, IOException {
+		numeroCaso = "_06-SinPodioConsistencia";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+	
+	@Test
+	public void caso07_DistanciaAl80() throws NumberFormatException, IOException {
+		numeroCaso = "_07-DistanciaAl80";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+
+	@Test
+	public void caso08_SinPodios() throws NumberFormatException, IOException {
+		numeroCaso = "_08-SinPodios";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalida = rutaSalida + numeroCaso + ".out";
+
+		Main.ejecutar(pathEntrada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
+	}
+	
+	@Test
+	public void caso09_FatigaConsistencia() throws NumberFormatException, IOException {
+		numeroCaso = "_09-FatigaConsistencia";
+		pathEntrada = rutaEntrada + numeroCaso + ".in";
+		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
+		pathSalida = rutaSalida + numeroCaso + ".out";
 		EntradaSalida.generarFatiga(pathEntrada, pathSalidaEsperada, CANTIDAD_PARTICIPANTES_FATIGA);
 		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso01Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_01";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso02Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_02";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso03Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_03";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso04Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_04";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso05Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_05";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso06Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_06";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso07Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_07";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso8Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_8-TiroDescalificado";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso9Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_9-SinPodioConsistencia";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
+		assertEquals(compararArchivosSalida(), true);
 	}
 	
-	@Test
-	public void caso10Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_10-DistanciaAl80";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
-
-	@Test
-	public void caso11Test() throws NumberFormatException, IOException {
-		String numeroCaso = "_11-SinPodios";
-		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
-		String pathEntrada = rutaEntrada + numeroCaso + ".in";
-		String pathSalida = rutaSalida + numeroCaso + ".out";
-
-		Main.ejecutar(pathEntrada, pathSalida);
-		compararArchivosSalida(pathSalidaEsperada, pathSalida);
-	}
 	
-	private void compararArchivosSalida(String pathSalidaEsperada, String pathSalida)
-			throws FileNotFoundException, IOException {
+	private boolean compararArchivosSalida() throws FileNotFoundException, IOException {
+		boolean res = true;
+		String lineaSalida = new String();
 		BufferedReader brSalida = new BufferedReader(new FileReader(new File(pathSalida)));
 		BufferedReader brSalidaEsperada = new BufferedReader(new FileReader(new File(pathSalidaEsperada)));
 
 		String lineaEsperada;
 		while ((lineaEsperada = brSalidaEsperada.readLine()) != null) {
-			String lineaSalida = brSalida.readLine();
-			assertNotNull(lineaSalida);
-
-			assertEquals(lineaEsperada, lineaSalida);
+			lineaSalida = brSalida.readLine();
+			if(!lineaEsperada.equals(lineaSalida) || lineaSalida == null)
+				res = false;			
 		}
-		assertNull(brSalida.readLine());
+		if(brSalida.readLine() != null)
+			res = false;
+
+		brSalida.close();
+		brSalidaEsperada.close();
+		return res;
 	}
+
 }
