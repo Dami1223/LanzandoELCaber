@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,14 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import ejecucion.EntradaSalida;
 import ejecucion.Main;
 
-@DisplayName("Lote de Prueba")
-class TorneoTest {
+public class TorneoTest {
 
 	private static final int CANTIDAD_PARTICIPANTES_FATIGA = 1000000;
 	private final String rutaSalidaEsperada = "LoteDePrueba\\SalidaEsperada\\podiosEsperados";
@@ -23,8 +21,7 @@ class TorneoTest {
 	private final String rutaEntrada = "LoteDePrueba\\Entrada\\lanzadores";
 
 	@Test
-	@DisplayName("Caso del Enunciado")
-	void EnunciadoTest() throws NumberFormatException, IOException {
+	public void enunciadoTest() throws NumberFormatException, IOException {
 		String numeroCaso = "_00";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -34,8 +31,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso de Fatiga")
-	void fatigaConsistenciaTest() throws NumberFormatException, IOException {
+	public void fatigaConsistenciaTest() throws NumberFormatException, IOException {
 		String numeroCaso = "CasoFatiga";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
@@ -46,8 +42,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 01")
-	void Caso01Test() throws NumberFormatException, IOException {
+	public void caso01Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_01";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -58,8 +53,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 02")
-	void Caso02Test() throws NumberFormatException, IOException {
+	public void caso02Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_02";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -70,8 +64,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 03")
-	void Caso03Test() throws NumberFormatException, IOException {
+	public void caso03Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_03";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -82,8 +75,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 04")
-	void Caso04Test() throws NumberFormatException, IOException {
+	public void caso04Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_04";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -94,8 +86,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 05")
-	void Caso05Test() throws NumberFormatException, IOException {
+	public void caso05Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_05";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -106,8 +97,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 06")
-	void Caso06Test() throws NumberFormatException, IOException {
+	public void caso06Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_06";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -118,8 +108,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 07")
-	void Caso07Test() throws NumberFormatException, IOException {
+	public void caso07Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_07";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -130,8 +119,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 8")
-	void Caso8Test() throws NumberFormatException, IOException {
+	public void caso8Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_8-TiroDescalificado";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -142,8 +130,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 9")
-	void Caso9Test() throws NumberFormatException, IOException {
+	public void caso9Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_9-SinPodioConsistencia";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -154,8 +141,7 @@ class TorneoTest {
 	}
 	
 	@Test
-	@DisplayName("Caso 10")
-	void Caso10Test() throws NumberFormatException, IOException {
+	public void caso10Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_10-DistanciaAl80";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -166,8 +152,7 @@ class TorneoTest {
 	}
 
 	@Test
-	@DisplayName("Caso 11")
-	void Caso11Test() throws NumberFormatException, IOException {
+	public void caso11Test() throws NumberFormatException, IOException {
 		String numeroCaso = "_11-SinPodios";
 		String pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		String pathEntrada = rutaEntrada + numeroCaso + ".in";
@@ -180,16 +165,15 @@ class TorneoTest {
 	private void compararArchivosSalida(String pathSalidaEsperada, String pathSalida)
 			throws FileNotFoundException, IOException {
 		BufferedReader brSalida = new BufferedReader(new FileReader(new File(pathSalida)));
-		BufferedReader brSalidaEsperda = new BufferedReader(new FileReader(new File(pathSalidaEsperada)));
+		BufferedReader brSalidaEsperada = new BufferedReader(new FileReader(new File(pathSalidaEsperada)));
 
 		String lineaEsperada;
-		while ((lineaEsperada = brSalidaEsperda.readLine()) != null) {
+		while ((lineaEsperada = brSalidaEsperada.readLine()) != null) {
 			String lineaSalida = brSalida.readLine();
-			assertNotNull(lineaSalida, "La salida tiene más lineas que la esperada");
+			assertNotNull(lineaSalida);
 
 			assertEquals(lineaEsperada, lineaSalida);
 		}
-		assertNull(brSalida.readLine(), "La salida tiene más lineas que la esperada");
+		assertNull(brSalida.readLine());
 	}
-
 }
