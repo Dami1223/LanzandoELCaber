@@ -1,19 +1,20 @@
 package clases;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Torneo {
 
 	private List<Participante> lanzadores;
-	private Podio podioConsistencia;
-	private Podio podioDistancia;
+	private List<Podio> podios;
 	private Arbitro arbitro;
 
 	public Torneo(List<Participante> listaDeLanzadores) {
 		lanzadores = listaDeLanzadores;
 		this.arbitro = new Arbitro();
-		this.podioConsistencia = new Podio(3);
-		this.podioDistancia = new Podio(3);
+		this.podios = new LinkedList<Podio>();
+		this.podios.add(new Podio(3));
+		this.podios.add(new Podio(3));
 	}
 
 	public List<Participante> getLanzadores() {
@@ -23,21 +24,24 @@ public class Torneo {
 	public void generarPodios() {
 		for (Participante participante : lanzadores) {
 			arbitro.corregirLanzamientos(participante);
-			arbitro.evaluarSegun(new Consistencia());
-			if (arbitro.validar(participante))
-				podioConsistencia.clasificarParticipante(participante, arbitro);
-			arbitro.evaluarSegun(new Distancia());
-			if (arbitro.validar(participante))
-				podioDistancia.clasificarParticipante(participante, arbitro);
+			for (Podio podio : podios) {
+				arbitro.cambiarCriterioDeEvaluacion();
+				if (arbitro.validar(participante))
+					podio.clasificarParticipante(participante, arbitro);
+			}
 		}
 	}
 
 	public Podio getPodioConsistencia() {
-		return podioConsistencia;
+		return podios.get(0);
 	}
 
 	public Podio getPodioDistancia() {
-		return podioDistancia;
+		return podios.get(1);
+	}
+
+	public List<Podio> getPodios() {
+		return podios;
 	}
 
 }

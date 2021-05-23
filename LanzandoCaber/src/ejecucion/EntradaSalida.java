@@ -38,7 +38,7 @@ public class EntradaSalida {
 		double angulo = 0;
 		for (int i = cantidadParticipantes; i >= 1; i--) {
 			for (int j = 0; j < 3; j++) {
-				distancia += i;
+				distancia += i*0.01;
 				pw.print(String.format(Locale.ENGLISH, "%.2f\t", distancia));
 				pw.print(String.format(Locale.ENGLISH, "%.2f\n", angulo));
 			}
@@ -51,10 +51,12 @@ public class EntradaSalida {
 		pwSalida.close();
 	}
 
-	public static void escribirResultado(String pathSalida, Podio podioC, Podio podioD) throws FileNotFoundException {
+	public static void escribirResultado(String pathSalida, List<Podio> podios) throws FileNotFoundException {
 		File archivoSalida = new File(pathSalida);
 		PrintWriter pwOut = new PrintWriter(archivoSalida);
-		pwOut.write(podioC.toString() + "\n" + podioD.toString() + "\n");
+		for (Podio podio : podios) {
+			pwOut.write(podio.toString() + "\n");
+		}
 		pwOut.close();
 	}
 
@@ -81,5 +83,4 @@ public class EntradaSalida {
 		sc.close();
 		return listaParticipantes;
 	}
-
 }

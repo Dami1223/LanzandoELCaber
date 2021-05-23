@@ -15,7 +15,7 @@ public class Main {
 		Torneo torneo = new Torneo(listaDeLanzadores);
 		torneo.generarPodios();
 
-		EntradaSalida.escribirResultado(pathSalida, torneo.getPodioConsistencia(), torneo.getPodioDistancia());
+		EntradaSalida.escribirResultado(pathSalida, torneo.getPodios());
 		return torneo;
 	}
 

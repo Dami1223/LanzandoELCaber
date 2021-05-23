@@ -1,10 +1,18 @@
 package clases;
 
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Arbitro implements Comparator<Participante> {
 
-	private CriterioDeEvaluacion criterio;
+	private Queue<CriterioDeEvaluacion> criterios;
+
+	public Arbitro() {
+		this.criterios = new LinkedList<CriterioDeEvaluacion>();
+		this.criterios.add(new Distancia());
+		this.criterios.add(new Consistencia());
+	}
 
 	private boolean esTiroBueno(Lanzamiento lanzamiento) {
 		return lanzamiento.getAngulo() < 90 && lanzamiento.getAngulo() > 30
@@ -27,19 +35,19 @@ public class Arbitro implements Comparator<Participante> {
 	}
 
 	public int compare(Participante uno, Participante dos) {
-		return this.criterio.compare(uno.getLanzamientos(), dos.getLanzamientos());
+		return this.criterios.peek().compare(uno.getLanzamientos(), dos.getLanzamientos());
 	}
 
 	public double calcular(Lanzamiento[] lanzamientos) {
-		return criterio.calcular(lanzamientos);
+		return criterios.peek().calcular(lanzamientos);
 	}
 
 	public boolean validar(Participante participante) {
-		return this.criterio.validar(participante.getLanzamientos());
+		return this.criterios.peek().validar(participante.getLanzamientos());
 	}
 
-	public void evaluarSegun(CriterioDeEvaluacion criterio) {
-		this.criterio = criterio;
+	public void cambiarCriterioDeEvaluacion() {
+		this.criterios.add(this.criterios.poll());
 	}
 
 }
