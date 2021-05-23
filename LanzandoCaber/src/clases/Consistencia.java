@@ -1,6 +1,6 @@
 package clases;
 
-public class Consistencia extends CriterioDeEvaluacion {
+public class Consistencia implements CriterioDeEvaluacion {
 
 	@Override
 	public double calcular(Lanzamiento[] lanzamientos) {
@@ -29,7 +29,7 @@ public class Consistencia extends CriterioDeEvaluacion {
 	}
 
 	@Override
-	protected boolean validar(Lanzamiento[] lanzamientos) {
+	public boolean validar(Lanzamiento[] lanzamientos) {
 		for (Lanzamiento lanzamiento : lanzamientos) {
 			if (!lanzamiento.getValidez())
 				return false;

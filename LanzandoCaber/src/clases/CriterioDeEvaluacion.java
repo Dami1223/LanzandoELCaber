@@ -2,9 +2,10 @@ package clases;
 
 import java.util.Comparator;
 
-public abstract class CriterioDeEvaluacion implements Comparator<Lanzamiento[]> {
+public interface CriterioDeEvaluacion extends Comparator<Lanzamiento[]> {
 
-	public abstract double calcular(Lanzamiento[] lanzamientos);
+	public double calcular(Lanzamiento[] lanzamientos);
 
-	protected abstract boolean validar(Lanzamiento[] lanzamientos);
+	public boolean validar(Lanzamiento[] lanzamientos);
+
 }

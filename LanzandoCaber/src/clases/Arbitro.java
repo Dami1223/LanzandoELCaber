@@ -6,10 +6,6 @@ public class Arbitro implements Comparator<Participante> {
 
 	private CriterioDeEvaluacion criterio;
 
-	public Arbitro(CriterioDeEvaluacion criterio) {
-		this.criterio = criterio;
-	}
-
 	private boolean esTiroBueno(Lanzamiento lanzamiento) {
 		return lanzamiento.getAngulo() < 90 && lanzamiento.getAngulo() > 30
 				|| lanzamiento.getAngulo() > -90 && lanzamiento.getAngulo() < -30;
@@ -40,6 +36,10 @@ public class Arbitro implements Comparator<Participante> {
 
 	public boolean validar(Participante participante) {
 		return this.criterio.validar(participante.getLanzamientos());
+	}
+
+	public void evaluarSegun(CriterioDeEvaluacion criterio) {
+		this.criterio = criterio;
 	}
 
 }

@@ -1,6 +1,8 @@
 package clases;
 
-public class Distancia extends CriterioDeEvaluacion {
+import java.util.Comparator;
+
+public class Distancia implements CriterioDeEvaluacion, Comparator<Lanzamiento[]> {
 
 	@Override
 	public double calcular(Lanzamiento[] lanzamientos) {
@@ -18,7 +20,7 @@ public class Distancia extends CriterioDeEvaluacion {
 	}
 
 	@Override
-	protected boolean validar(Lanzamiento[] lanzamientos) {
+	public boolean validar(Lanzamiento[] lanzamientos) {
 		for (Lanzamiento lanzamiento : lanzamientos) {
 			if (lanzamiento.getValidez())
 				return true;

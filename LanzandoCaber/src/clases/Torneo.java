@@ -7,13 +7,11 @@ public class Torneo {
 	private List<Participante> lanzadores;
 	private Podio podioConsistencia;
 	private Podio podioDistancia;
-	private Arbitro arbitroConsistencia;
-	private Arbitro arbitroDistancia;
+	private Arbitro arbitro;
 
 	public Torneo(List<Participante> listaDeLanzadores) {
 		lanzadores = listaDeLanzadores;
-		this.arbitroConsistencia = new Arbitro(new Consistencia());
-		this.arbitroDistancia = new Arbitro(new Distancia());
+		this.arbitro = new Arbitro();
 		this.podioConsistencia = new Podio(3);
 		this.podioDistancia = new Podio(3);
 	}
@@ -24,11 +22,13 @@ public class Torneo {
 
 	public void generarPodios() {
 		for (Participante participante : lanzadores) {
-			arbitroConsistencia.corregirLanzamientos(participante);
-			if (arbitroConsistencia.validar(participante))
-				podioConsistencia.clasificarParticipante(participante, arbitroConsistencia);
-			if (arbitroDistancia.validar(participante))
-				podioDistancia.clasificarParticipante(participante, arbitroDistancia);
+			arbitro.corregirLanzamientos(participante);
+			arbitro.evaluarSegun(new Consistencia());
+			if (arbitro.validar(participante))
+				podioConsistencia.clasificarParticipante(participante, arbitro);
+			arbitro.evaluarSegun(new Distancia());
+			if (arbitro.validar(participante))
+				podioDistancia.clasificarParticipante(participante, arbitro);
 		}
 	}
 
