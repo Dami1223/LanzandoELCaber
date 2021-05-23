@@ -124,8 +124,8 @@ public class TorneoTest {
 	}
 	
 	@Test
-	public void caso09_FatigaConsistencia() throws NumberFormatException, IOException {
-		numeroCaso = "_09-FatigaConsistencia";
+	public void caso09_Fatiga() throws NumberFormatException, IOException {
+		numeroCaso = "_09-Fatiga";
 		pathEntrada = rutaEntrada + numeroCaso + ".in";
 		pathSalidaEsperada = rutaSalidaEsperada + numeroCaso + ".out";
 		pathSalida = rutaSalida + numeroCaso + ".out";
