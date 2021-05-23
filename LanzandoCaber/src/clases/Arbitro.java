@@ -10,8 +10,8 @@ public class Arbitro implements Comparator<Participante> {
 
 	public Arbitro() {
 		this.criterios = new LinkedList<CriterioDeEvaluacion>();
-		this.criterios.add(new Distancia());
 		this.criterios.add(new Consistencia());
+		this.criterios.add(new Distancia());
 	}
 
 	private boolean esTiroBueno(Lanzamiento lanzamiento) {
@@ -48,6 +48,10 @@ public class Arbitro implements Comparator<Participante> {
 
 	public void cambiarCriterioDeEvaluacion() {
 		this.criterios.add(this.criterios.poll());
+	}
+
+	public int getCantidadCriterios() {
+		return this.criterios.size();
 	}
 
 }

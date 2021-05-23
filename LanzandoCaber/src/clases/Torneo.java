@@ -13,8 +13,9 @@ public class Torneo {
 		lanzadores = listaDeLanzadores;
 		this.arbitro = new Arbitro();
 		this.podios = new LinkedList<Podio>();
-		this.podios.add(new Podio(3));
-		this.podios.add(new Podio(3));
+		for (int i = 0; i < this.arbitro.getCantidadCriterios(); i++) {
+			this.podios.add(new Podio(3));
+		}
 	}
 
 	public List<Participante> getLanzadores() {
@@ -25,9 +26,9 @@ public class Torneo {
 		for (Participante participante : lanzadores) {
 			arbitro.corregirLanzamientos(participante);
 			for (Podio podio : podios) {
-				arbitro.cambiarCriterioDeEvaluacion();
 				if (arbitro.validar(participante))
 					podio.clasificarParticipante(participante, arbitro);
+				arbitro.cambiarCriterioDeEvaluacion();
 			}
 		}
 	}
